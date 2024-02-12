@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   
+    <title>Document</title>
+    <style>
+      body {
+        background: #eee;
+      }
+      .tab-buttons {
+       
+      }
+      .tab-button {
+        background-color: #ffffffff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        height: 40px;
+      }
+
+      .tab-button:hover {
+        background-color: #ddd;
+      }
+      .tab {
+        display: none;
+        width: 70%;
+        padding: 20px;
+        background-color: #ccc;
+      }
+
+      .active-tab-button {
+        background-color: #ccc;
+        transform: scaleY(1.1);
+        transform-origin: bottom;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab-buttons">
+      <button class="tab-button active-tab-button" onclick="">Tab 1</button>
+      <button class="tab-button" onclick="">Tab 2</button>
+      <button class="tab-button" onclick="">Tab 3</button>
+    </div>
+    <div class="tab" id="tab1">
+      <h2>Tab 1 content</h2>
+      <p>Description for tab 1 goes here</p>
+    </div>
+    <div class="tab" id="tab2">
+      <h2>Tab 2 content</h2>
+      <p>Description for tab 2 goes here</p>
+    </div>
+    <div class="tab" id="tab3">
+      <h2>Tab 3 content</h2>
+      <p>Description for tab 3 goes here</p>
+    </div>
+    <script>
+        function toggletab(tabIndex) {
+          let tabs = document.getElementsByClassName("tab");
+          for (let i = 0; i < tabs.length; i++) {
+            tabs[i].style.display = "none";
+          }
+          tabs[tabIndex].style.display = "block";
+  
+          let buttons = document.getElementsByClassName("tab-button");
+          for (let i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("active-tab-button");
+          }
+          buttons[tabIndex].classList.add("active-tab-button");
+        }
+        toggletab(0);
+      </script>
+  </body>
+</html>

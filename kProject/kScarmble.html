@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Fauna+One&family=Inter:wght@100;200;300;400;500;700&family=Poppins:wght@500&family=Rubik:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="scamble.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <h1>Guess the word</h1>
+    </header>
+    <section>
+      <div class="gameArea">
+        <h3 class="msg"></h3>
+        <input type="text" class="hidden" />
+        <button class="bttn">Click here to start</button>
+        <div class="option">
+          <button class="bttn-option-I">Bolllywood</button>
+          <button class="bttn-option-II">Random</button>
+        </div>
+      </div>
+    </section>
+
+
+    <script>
+      const msg = document.querySelector(".msg");
+      const guess = document.querySelector("input");
+      const btn = document.querySelector(".bttn");
+      let sWords = [
+        "apple",
+        "banana",
+        "chocolate",
+        "dolphin",
+        "elephant",
+        "flamingo",
+        "giraffe",
+        "honey",
+        "icecream",
+        "jazz",
+        "kangaroo",
+        "lemon",
+        "mango",
+        "nectar",
+        "ocean",
+        "penguin",
+        "quilt",
+        "rainbow",
+        "sunset",
+        "tiger",
+        "umbrella",
+        "violet",
+        "whisper",
+        "xylophone",
+        "yellow",
+        "zebra",
+        "amazing",
+        "butterfly",
+        "carousel",
+        "delight",
+        "elegant",
+        "fantasy",
+        "gratitude",
+        "harmony",
+        "inspire",
+        "jubilee",
+        "kaleidoscope",
+        "luminous",
+        "mystic",
+        "nebula",
+        "oasis",
+        "passion",
+        "quasar",
+        "radiant",
+        "serenity",
+        "tranquil",
+        "unique",
+        "velvet",
+        "wonder",
+        "xylograph",
+        "yoga",
+        "zenith",
+        "adventure",
+        "blissful",
+        "candle",
+        "dreamscape",
+        "enchanting",
+        "firefly",
+        "gentle",
+        "happiness",
+        "illuminate",
+        "journey",
+        "kisses",
+        "lullaby",
+        "moonlight",
+        "nirvana",
+        "overture",
+        "paradise",
+        "quaint",
+        "rhapsody",
+        "starry",
+        "tenderness",
+        "universe",
+        "vivid",
+        "whimsical",
+        "xanadu",
+        "yearning",
+        "zephyr",
+        "ambrosia",
+        "bewitching",
+        "captivating",
+        "dandelion",
+        "ethereal",
+        "fascination",
+        "golden",
+        "halcyon",
+        "innocence",
+        "jubilant",
+        "kissable",
+        "luminary",
+        "mellifluous",
+        "nostalgia",
+        "opulent",
+        "peaceful",
+        "quixotic",
+        "resplendent",
+        "serendipity",
+        "talisman",
+        "uplifting",
+        "vibrant",
+        "whispering",
+        "xyloid",
+        "youthful",
+        "zealous",
+      ];
+const bollywood_celebrities = [
+    "Shah Rukh Khan", "Amitabh Bachchan", "Aishwarya Rai", "Deepika Padukone", "Salman Khan",
+    "Priyanka Chopra", "Ranbir Kapoor", "Kareena Kapoor Khan", "Hrithik Roshan", "Alia Bhatt",
+    "Akshay Kumar", "Katrina Kaif", "Ranveer Singh", "Anushka Sharma", "Varun Dhawan",
+    "Aamir Khan", "Madhuri Dixit", "Shahid Kapoor", "Sonam Kapoor", "Saif Ali Khan",
+    "Vidya Balan", "Ajay Devgn", "Kajol", "Rajkummar Rao", "Kangana Ranaut",
+    "Sanjay Dutt", "Karisma Kapoor", "Sushant Singh Rajput", "Jacqueline Fernandez", "Ayushmann Khurrana",
+    "Preity Zinta", "Farhan Akhtar", "Parineeti Chopra", "Arjun Kapoor", "Shraddha Kapoor",
+    "Emraan Hashmi", "Nargis Fakhri", "Aditya Roy Kapur", "Sonakshi Sinha", "Sidharth Malhotra",
+    "Sridevi", "Tiger Shroff", "Disha Patani", "Abhishek Bachchan", "Esha Gupta",
+    "Raj Kapoor", "Malaika Arora", "Rishi Kapoor", "Juhi Chawla", "Randeep Hooda",
+    "Vicky Kaushal", "Kiara Advani", "Anil Kapoor", "Sara Ali Khan", "Govinda",
+    "Bhumi Pednekar", "Suniel Shetty", "Tamannaah Bhatia", "Sunil Dutt", "Shilpa Shetty",
+    "Fawad Khan", "Kriti Sanon", "Shashi Kapoor", "Radhika Apte", "Riteish Deshmukh",
+    "Dia Mirza", "Sanjeev Kumar", "Amy Jackson", "Vinod Khanna", "Kriti Kharbanda",
+    "Guru Dutt", "Yami Gautam", "Dharmendra", "Sanya Malhotra", "Nawazuddin Siddiqui",
+    "Waheeda Rehman", "Urvashi Rautela", "Jeetendra", "Neha Sharma", "Manoj Bajpayee",
+    "Vyjayanthimala", "Mouni Roy", "Rishi Kapoor", "Neha Dhupia", "Ayushmann Khurrana",
+    "Nimrat Kaur", "Isha Koppikar", "Tusshar Kapoor", "Sanya Malhotra", "Aditya Roy Kapur",
+    "Divya Bharti", "Nora Fatehi", "Rajkummar Rao", "Aditi Rao Hydari", "Randeep Hooda",
+    "Konkona Sen Sharma", "Sobhita Dhulipala", "Sunil Shetty", "Kajal Aggarwal", "Sharman Joshi"
+]
+
+      let play = false;
+      let newWords='';
+      let randWords=''
+      const createNewWords = (sWords) => {
+        let ranNum =Math.floor(Math.random() * sWords.length);
+        let newTempWords= sWords[ranNum]
+        console.log(newTempWords);
+        return newTempWords;
+      };
+    const scramblewords = (arr)=>{
+        for(let i=arr.length-1; i>=0;i--){
+            let temp =arr[i];
+            let j =Math.floor(Math.random()*(i+1))
+            console.log(temp)
+            console.log(j);
+        
+        }
+    }
+
+      btn.addEventListener("click", function () {
+        if (!play) {
+          play = true;
+          btn.innerHTML = "Guess";
+          guess.classList.toggle("hidden");
+          newWords=createNewWords();
+          randWords=scramblewords(newWords.split(''));
+        }
+      });
+    </script>
+  </body>
+</html>
